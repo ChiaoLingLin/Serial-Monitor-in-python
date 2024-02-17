@@ -19,7 +19,6 @@ class serial_target():
         self._stop: bool = False
         self._S_INIT: bool = False
         self._buff: str = ""
-        self._lock = threading.Lock()
 
 
     #initialize serial

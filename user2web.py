@@ -1,6 +1,3 @@
-
-
-
 def upload(data):
     try:
         print("uplaod success")

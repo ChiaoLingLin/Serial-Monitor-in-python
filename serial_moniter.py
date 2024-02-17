@@ -28,6 +28,10 @@ class serial_target():
         try:
             self._ser = serial.Serial(self._Port,self._Baud)# ERROR!!!!
             print("SERIAL INITIALIZATION SUCCESS")
+            try:
+                self._ser.read(self._ser.in_waiting)
+            except:
+                pass
             self._S_INIT = True
             return self._S_INIT
         except:

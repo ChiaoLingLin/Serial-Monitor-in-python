@@ -13,7 +13,7 @@ atexit.register(esp32.stop)
 #-----------test------------
 import testfile
 
-dummy = dataf.user2web_format("home","Ricky","safe")
+dummy = dataf.user2web_format("home","Lin","safe")
 
 def send():
     esp32.send_data(dataf.d2j(dummy))

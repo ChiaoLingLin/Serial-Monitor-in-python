@@ -7,6 +7,7 @@
  - - -
  ### 模組關聯性
 ![](https://raw.githubusercontent.com/ChiaoLingLin/Serial-Monitor-in-python/main/relation.jpg)
+
 ---
 ##### serial_moniter.py
 樹梅派與esp32之間使用USB serial的數據傳輸監控視窗，使用class建立不同函式類別  

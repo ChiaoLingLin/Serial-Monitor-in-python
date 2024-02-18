@@ -6,10 +6,10 @@
 
  - - -
  ### 模組關聯性
-![relation](D:\中央大學資料\大三下\專題\UML "relation")
+![avatar](D:\中央大學資料\大三下\專題\UML\relation.jpg)
 ---
 ##### serial_moniter.py
-樹梅派與esp32之間使用USB serial的數據傳輸監控視窗，使用class建立不同函式類別
+樹梅派與esp32之間使用USB serial的數據傳輸監控視窗，使用class建立不同函式類別  
 ###### 需要模組:
  - serial
  - time

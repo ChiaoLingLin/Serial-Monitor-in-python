@@ -60,3 +60,103 @@ DEFULT_DICT = {
 | ------------- | ------------------------------ |
 | `MAX_ITER` | 自定義資料最大傳送累積次數       |
 | `check_iter(<dictionary data>)` | 輸入dictionary格式的data，確認此筆資料中"iter"是否超過自定義的MAX_ITER，回傳值為boolyn      |
+
+ - - -
+##### user2web.py (待修改)
+將樹梅派蒐集到的資料上傳至雲端
+###### 需要模組(待修改):
+無
+ 
+###### 程式碼說明(待修改):
+
+| function name | description                    |
+| ------------- | ------------------------------ |
+| `upload(<data>)`| 將data上傳至雲端，回傳值為boolyn |
+
+###### 程式碼目前架構(待修改):
+````python
+def upload(data) -> bool:
+    try:
+        print("uplaod success")
+        return True 
+    except:
+        print('upload fail')
+        return False
+````
+---
+
+##### phone2pi.py (待修改)
+手機傳送資料至樹梅派，
+###### 需要模組:
+- threading
+ 
+###### 程式碼說明:
+
+| function name | description                    |
+| ------------- | ------------------------------ |
+| ``| ? |
+| ``| ? |
+###### 程式碼目前架構(待修改):
+````python
+
+````
+##### testfile.py
+測試文件，使用者可在終端機輸入資料按下enter進行測試
+###### 需要模組:
+- threading
+ 
+###### 程式碼說明:
+
+| function name | description                    |
+| ------------- | ------------------------------ |
+| `fire(fn)`| ? |
+| `target_fn(fn)`| ? |
+
+
+--------------------------------------------
+---
+
+
+### 基本功能展示
+````python
+import serial_moniter as sm
+import propagate_rule as pr
+import data_format as dataf
+import user2web as u2w
+import atexit
+
+
+esp32 = sm.serial_target('/dev/ttyUSB0',115200) #create object 
+esp32.serial_init() #initialize serial
+esp32.collect_data() #start to collect data
+atexit.register(esp32.stop) #stop when press ctrl C
+
+#-----------test------------
+import testfile
+
+dummy = dataf.user2web_format("home","Lin","safe")
+
+def send():
+    esp32.send_data(dataf.d2j(dummy))
+
+testfile.target_fn(send)
+
+#---------------------------
+
+
+for data in esp32.get(): #esp32.get() envalue to data 
+    print(data)
+    data = dataf.j2d(data)  #datatype changed from json to dictionary
+    if pr.check_iter(data): 
+        if data['dtype'] == "u2w": #check propagate type
+            if u2w.upload(data):
+                pass
+            else:
+                esp32.send_data(dataf.d2j(data))
+        
+    
+
+````
+
+
+
